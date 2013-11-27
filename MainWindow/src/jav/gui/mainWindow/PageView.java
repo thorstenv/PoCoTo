@@ -141,10 +141,6 @@ public class PageView extends JPanel {
                     int width = right - left;
                     int height = bottom - top;
 
-                    // no values less than 0
-                    if (width < 0) width = -width;
-                    if (height < 0) height = -height;
-
                     BufferedImage bi = ip.getTokenImage(left, top, width, height, imgScale);
                     tv = new ImageTokenVisualization(bi, tok, fontSize);
                     lineheight = ((ImageTokenVisualization) tv).getImageHeight();
