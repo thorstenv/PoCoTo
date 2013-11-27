@@ -36,11 +36,11 @@ import org.openide.util.NbBundle;
  *THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  *(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * This file is part of the ocr-postcorrection tool developed
  * by the IMPACT working group at the Centrum für Informations- und Sprachverarbeitung, University of Munich.
  * For further information and contacts visit http://ocr.cis.uni-muenchen.de/
- * 
+ *
  * @author thorsten (thorsten.vobl@googlemail.com)
  */
 public final class NewProjectVisualPanel2 extends JPanel implements DocumentListener {
@@ -79,7 +79,7 @@ public final class NewProjectVisualPanel2 extends JPanel implements DocumentList
                     try {
                         File file = fileChooser.getSelectedFile();
                         jTextField1.setText(file.getCanonicalPath());
-                        fileChooser.setCurrentDirectory(file);
+                        fileChooser.setCurrentDirectory(file.getParentFile());
                     } catch (IOException ex) {
                         Exceptions.printStackTrace(ex);
                     }
@@ -162,4 +162,8 @@ public final class NewProjectVisualPanel2 extends JPanel implements DocumentList
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private JFileChooser fileChooser;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/master

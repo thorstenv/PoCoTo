@@ -1,5 +1,19 @@
+# NetBeans specific #
+nbproject/private/
 build/
-.svn/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Class Files #
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+# Others #
 log.txt
-/dist/
-/MHAPP/nbproject/private/
+.svn/

@@ -46,12 +46,12 @@ public class NewProjectWizardDescriptor extends WizardDescriptor {
 //   private NewProjectWizardPanel3 panel3 = new NewProjectWizardPanel3();
 
    public NewProjectWizardDescriptor() {
-      List<Panel<WizardDescriptor>> panels = new ArrayList<Panel<WizardDescriptor>>();
+      List<Panel<WizardDescriptor>> panels = new ArrayList<>();
       panels.add(panel0);
       panels.add(panel1);
       panels.add(panel2);
 //      panels.add(panel3);
-      this.setPanelsAndSettings(new ArrayIterator<WizardDescriptor>(panels), this);
+      this.setPanelsAndSettings(new ArrayIterator<>(panels), this);
 
       // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
       this.setTitleFormat(new MessageFormat("{0}"));
