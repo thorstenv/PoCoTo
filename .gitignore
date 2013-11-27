@@ -17,3 +17,7 @@ nb-configuration.xml
 # Others #
 log.txt
 .svn/
+/CorrectionBackend/nbproject/private/
+/TokenVisualization/nbproject/private/
+/Wizards/nbproject/private/
+/MainWindow/nbproject/private/
