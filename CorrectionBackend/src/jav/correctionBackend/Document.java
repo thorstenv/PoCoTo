@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -1561,14 +1563,19 @@ public abstract class Document {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filename));
-            MyIterator<Page> page_iter = this.pageIterator();
-            while (page_iter.hasNext()) {
-                Page seite = page_iter.next();
-
-                MyIterator<Token> token_it = this.tokenIterator(seite);
-                while (token_it.hasNext()) {
-                    Token t = token_it.next();
-                    writer.write(t.getWDisplay());
+            MyIterator<Page> pit = this.pageIterator();
+            ArrayList<Page> pages = new ArrayList<>();
+            while (pit.hasNext()) {
+                    pages.add(pit.next());
+            }
+            Comparator<Page> cmp = new Comparator<Page>() {
+                    @Override public int compare(Page a, Page b) {
+                        return a.getIndex() - b.getIndex();}};
+            Collections.sort(pages, cmp);
+            for (Page page: pages) {
+                MyIterator<Token> tit = this.tokenIterator(page);
+                while (tit.hasNext()) {
+                    writer.write(tit.next().getWDisplay());
                 }
                 writer.write("\n\n####################################################################################################################\n\n");
             }
@@ -1593,7 +1600,7 @@ public abstract class Document {
         }
 
         boolean skipSpace = false;
-        // decide if immediate neighbour should be skipped, 
+        // decide if immediate neighbour should be skipped,
         // e.g. if it contains just whitespace
         if (next.getWDisplay().equals(" ")) {
             end = this.getNextToken(next.getID());
