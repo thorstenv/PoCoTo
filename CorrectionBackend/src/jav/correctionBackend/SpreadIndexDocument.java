@@ -345,7 +345,7 @@ public class SpreadIndexDocument extends Document {
                     }
                     if (atIndex.getTokenImageInfoBox().getCoordinateRight() < rightToken.getTokenImageInfoBox().getCoordinateLeft()) {
                         b.setCoordinateRight(rightToken.getTokenImageInfoBox().getCoordinateRight());
-                    } else {
+                    } else { // right and left coordinates overlap
                         int right = java.lang.Math.max(atIndex.getTokenImageInfoBox().getCoordinateRight(), rightToken.getTokenImageInfoBox().getCoordinateRight());
                         b.setCoordinateRight(right);
                     }
