@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -1564,13 +1566,23 @@ public abstract class Document {
             MyIterator<Page> page_iter = this.pageIterator();
             while (page_iter.hasNext()) {
                 Page seite = page_iter.next();
+                
+                writer.write("#### Seite " + ((int) seite.getIndex()+1) + " von " + this.numPages + " ###");
+                writer.newLine();
+                writer.newLine();
 
                 MyIterator<Token> token_it = this.tokenIterator(seite);
                 while (token_it.hasNext()) {
                     Token t = token_it.next();
-                    writer.write(t.getWDisplay());
+                    if( (t.getWDisplay().equals("\n")) || (t.getWDisplay().equals(("\r\n")) || (t.getWDisplay().equals("\r")))) {
+                        writer.newLine();
+                    } else {
+                        writer.write(t.getWDisplay());
+                    }
                 }
-                writer.write("\n\n####################################################################################################################\n\n");
+                
+                writer.newLine();
+                writer.newLine();               
             }
         } catch (IOException ex) {
             new CustomErrorDialog().showDialog(java.util.ResourceBundle.getBundle("jav/correctionBackend/Bundle").getString("IOError"));
@@ -1593,7 +1605,7 @@ public abstract class Document {
         }
 
         boolean skipSpace = false;
-        // decide if immediate neighbour should be skipped, 
+        // decide if immediate neighbour should be skipped,
         // e.g. if it contains just whitespace
         if (next.getWDisplay().equals(" ")) {
             end = this.getNextToken(next.getID());
@@ -2111,7 +2123,7 @@ class PageIterator implements MyIterator<Page> {
             conn = c;
             baseImgPath = path;
             s = conn.createStatement();
-            rs = s.executeQuery("SELECT pageIndex, MIN(indexInDocument) as min, MAX(indexInDocument) as max from token WHERE indexInDocument <> -1 GROUP BY pageIndex");
+            rs = s.executeQuery("SELECT pageIndex, MIN(indexInDocument) as min, MAX(indexInDocument) as max from token WHERE indexInDocument <> -1 GROUP BY pageIndex ORDER BY pageIndex");
         } catch (SQLException ex) {
             Logger.getLogger(TokenIterator.class.getName()).log(Level.SEVERE, null, ex);
         }

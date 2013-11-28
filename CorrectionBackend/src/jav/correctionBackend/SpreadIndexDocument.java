@@ -226,7 +226,6 @@ public class SpreadIndexDocument extends Document {
             conn.setAutoCommit(false);
 
             //reserve undo_redo_parts for the starting token
-
             setIndex = conn.prepareStatement("UPDATE token SET indexInDocument=-1 WHERE tokenID=?");
             undo_redo = conn.prepareStatement("INSERT INTO undoredo VALUES( ?,?,?,?,? )");
 
@@ -346,6 +345,9 @@ public class SpreadIndexDocument extends Document {
                     }
                     if (atIndex.getTokenImageInfoBox().getCoordinateRight() < rightToken.getTokenImageInfoBox().getCoordinateLeft()) {
                         b.setCoordinateRight(rightToken.getTokenImageInfoBox().getCoordinateRight());
+                    } else { // right and left coordinates overlap
+                        int right = java.lang.Math.max(atIndex.getTokenImageInfoBox().getCoordinateRight(), rightToken.getTokenImageInfoBox().getCoordinateRight());
+                        b.setCoordinateRight(right);
                     }
                 }
 
@@ -470,7 +472,7 @@ public class SpreadIndexDocument extends Document {
             int normals = tokensToAdd - spaces;
 
             int indicesNeeded = (normals * 3) + spaces;
-            
+
             if (freeIndexPlaces < indicesNeeded) {
                 this.spreadIndex(tokenID, indicesNeeded);
                 atIndex = this.getTokenByID(tokenID);
@@ -636,7 +638,7 @@ public class SpreadIndexDocument extends Document {
 
                     setIndex.executeBatch();
                     conn.commit();
-                    
+
                     truncateUndoRedo();
 
 //                    while (rs.next()) {
@@ -645,9 +647,9 @@ public class SpreadIndexDocument extends Document {
 //                        String part = rs.getString(2);
 //                        String type = rs.getString(3);
 //                        String command = rs.getString(5);
-//                        
+//
 //                        System.out.println("OLD: " + operation_id + " " + part + " " + type + " " + command);
-//                        
+//
 //                        Matcher m = tokidp.matcher(command);
 //                        if (m.matches()) {
 //                            int tokenID = Integer.parseInt(m.group(1));
