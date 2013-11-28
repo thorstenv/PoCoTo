@@ -88,13 +88,6 @@ public class ImageProcessor {
     public BufferedImage getTokenImage(int inx, int iny, int inw, int inh, double scale) {
 
         BufferedImage returnimg = null;
-        if (inw < 0) {
-            inw = -inw;
-        }
-        if (inh < 0) {
-            inh = -inh;
-        }
-
 //        Raster r = rop.getData();
 //        BufferedImage bim = graphicsConfiguration.createCompatibleImage(inw, inh);
 //        Raster subr = r.createChild(inx, iny, inw, inh, 0, 0, null);
