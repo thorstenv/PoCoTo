@@ -62,7 +62,7 @@ public class SpreadIndexDocument extends Document {
         try {
             try (PreparedStatement prep = conn.prepareStatement("INSERT INTO TOKEN VALUES( null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )")) {
                 prep.setInt(1, myIndex);
-                prep.setInt(2, t.getOrigID());
+                prep.setString(2, t.getOrigID());
                 prep.setString(3, t.getWOCR());
                 prep.setString(4, t.getWCOR());
                 prep.setBoolean(5, t.isNormal());
@@ -120,7 +120,7 @@ public class SpreadIndexDocument extends Document {
             try (Connection conn = jcp.getConnection()) {
                 try (PreparedStatement prep = conn.prepareStatement("INSERT INTO TOKEN VALUES( null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )")) {
                     prep.setInt(1, index);
-                    prep.setInt(2, t.getOrigID());
+                    prep.setString(2, t.getOrigID());
                     prep.setString(3, t.getWOCR());
                     prep.setString(4, t.getWCOR());
                     prep.setBoolean(5, t.isNormal());
@@ -362,7 +362,8 @@ public class SpreadIndexDocument extends Document {
             newToken.setSpecialSeq(SpecialSequenceType.NORMAL);
             newToken.setTokenImageInfoBox(b);
             newToken.setIndexInDocument(-1);
-
+            newToken.setOrigID(atIndex.getOrigID());
+            
             int identity = this.addToken(newToken, atIndex.getIndexInDocument());
             retval.add(0, identity);
 
@@ -525,6 +526,7 @@ public class SpreadIndexDocument extends Document {
 
                 temp = new Token(atIndex.getWOCR());
                 temp.setIndexInDocument(-1);
+                temp.setOrigID(atIndex.getOrigID());
                 temp.setWCOR(corr);
                 temp.setIsCorrected(false);
                 temp.setIsSuspicious(false);

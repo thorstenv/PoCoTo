@@ -216,7 +216,7 @@ public class HOCRParser extends DefaultHandler implements Parser {
                 temptoken_.setTokenImageInfoBox(null);
             }
 
-            temptoken_.setOrigID(orig_id);
+            temptoken_.setOrigID(orig_id+"");
             doc_.addToken(temptoken_);
             tokenIndex_++;
             this.tokenIsToBeAdded = false;

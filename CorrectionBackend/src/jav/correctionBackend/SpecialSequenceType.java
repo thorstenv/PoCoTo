@@ -32,5 +32,5 @@ package jav.correctionBackend;
  * @author thorsten (thorsten.vobl@googlemail.com)
  */
 public enum SpecialSequenceType {
-    NORMAL, PUNCTUATION, SPACE, NEWLINE, HYPHENATED
+    NORMAL, PUNCTUATION, SPACE, NEWLINE, HYPHENATED, HYPHEN
 }

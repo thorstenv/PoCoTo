@@ -70,7 +70,7 @@ public class DefaultDocument extends Document {
         try {
             try (PreparedStatement prep = conn.prepareStatement("INSERT INTO TOKEN VALUES( null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )")) {
                 prep.setInt(1, t.getIndexInDocument());
-                prep.setInt(2, t.getOrigID());
+                prep.setString(2, t.getOrigID());
                 prep.setString(3, t.getWOCR());
                 prep.setString(4, t.getWCOR());
                 prep.setBoolean(5, t.isNormal());

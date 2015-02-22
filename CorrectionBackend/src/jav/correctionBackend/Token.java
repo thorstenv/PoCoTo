@@ -36,7 +36,7 @@ public class Token {
     private String wOCR = "";
     private String wCOR = "";
     private int tokenID;
-    private int orig_id;
+    private String orig_id;
     private int indexInDocument;
     private boolean isNormal;
     private boolean isCorrected;
@@ -49,7 +49,7 @@ public class Token {
     private String topSuggestion = "";
 
     protected Token(String wocr) {
-        this.orig_id = -1;
+        this.orig_id = "";
         this.tokenID = -1;
         this.wOCR = wocr;
     }
@@ -106,11 +106,11 @@ public class Token {
         this.tokenID = i;
     }
     
-    protected void setOrigID( int i ) {
+    protected void setOrigID( String i ) {
         this.orig_id = i;
     }
     
-    public int getOrigID() {
+    public String getOrigID() {
         return this.orig_id;
     }
 

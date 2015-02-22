@@ -233,7 +233,7 @@ public class AbbyyXMLParser extends DefaultHandler implements Parser {
                     temptoken_.setTokenImageInfoBox(null);
                 }
 
-                temptoken_.setOrigID(orig_id);
+                temptoken_.setOrigID(orig_id+"");
                 doc_.addToken(temptoken_);
                 System.out.println("token add " + temptoken_.getWOCR() + " " + temptoken_.isSuspicious());
                 this.globalIsSuspicious = false;
@@ -307,7 +307,7 @@ public class AbbyyXMLParser extends DefaultHandler implements Parser {
                             temptoken_.setTokenImageInfoBox(null);
                         }
 
-                        temptoken_.setOrigID(orig_id);
+                        temptoken_.setOrigID(orig_id+"");
                         doc_.addToken(temptoken_);
                         System.out.println("token add " + temptoken_.getWOCR() + " " + temptoken_.isSuspicious());
                         this.globalIsSuspicious = false;
@@ -353,7 +353,7 @@ public class AbbyyXMLParser extends DefaultHandler implements Parser {
                             temptoken_.setTokenImageInfoBox(null);
                         }
 
-                        temptoken_.setOrigID(orig_id);
+                        temptoken_.setOrigID(orig_id+"");
                         doc_.addToken(temptoken_);
                         System.out.println("token add " + temptoken_.getWOCR() + " " + temptoken_.isSuspicious());
                         this.globalIsSuspicious = false;

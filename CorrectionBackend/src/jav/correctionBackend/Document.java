@@ -957,7 +957,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -999,7 +999,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1039,7 +1039,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1080,7 +1080,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1120,7 +1120,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1161,7 +1161,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1201,7 +1201,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1242,7 +1242,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1282,7 +1282,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -1322,7 +1322,7 @@ public abstract class Document {
                 retval = new Token(rs.getString(4));
                 retval.setId(rs.getInt(1));
                 retval.setIndexInDocument(rs.getInt(2));
-                retval.setOrigID(rs.getInt(3));
+                retval.setOrigID(rs.getString(3));
                 retval.setWCOR(rs.getString(5));
                 retval.setIsSuspicious(rs.getBoolean(15));
                 retval.setIsCorrected(rs.getBoolean(7));
@@ -2003,7 +2003,7 @@ class TokenIterator implements MyIterator<Token> {
             retval = new Token(rs.getString(4));
             retval.setId(rs.getInt(1));
             retval.setIndexInDocument(rs.getInt(2));
-            retval.setOrigID(rs.getInt(3));
+            retval.setOrigID(rs.getString(3));
             retval.setWCOR(rs.getString(5));
             retval.setIsSuspicious(rs.getBoolean(15));
             retval.setIsCorrected(rs.getBoolean(7));
