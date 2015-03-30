@@ -5,6 +5,7 @@ import jav.correctionBackend.alto1_4.BlockType;
 import jav.correctionBackend.alto1_4.ComposedBlockType;
 import jav.correctionBackend.alto1_4.StringType;
 import jav.correctionBackend.alto1_4.TextBlockType;
+import jav.correctionBackend.alto1_4.TextBlockType.TextLine;
 import jav.correctionBackend.alto1_4.TextBlockType.TextLine.SP;
 import java.io.File;
 import java.io.FileInputStream;
@@ -141,9 +142,10 @@ public class AltoXMLUpdater {
 //        System.out.println("BLOCKTYPE: " + blockType.getClass().getSimpleName());
         if (blockType.getClass().getSimpleName().equals("TextBlockType")) {
             TextBlockType textBlock = (TextBlockType) blockType;
-            for (TextBlockType.TextLine textLine : textBlock.getTextLine()) {
-                this.processTextLine(textBlock, textLine, horizontalResolution, verticalResolution, measurementUnit);
-            };
+            ListIterator<TextLine> textLineIter = textBlock.getTextLine().listIterator();
+            while(textLineIter.hasNext()) {            
+                this.processTextLine(textLineIter, textLineIter.next(), horizontalResolution, verticalResolution, measurementUnit);
+            }
         } else if (blockType.getClass().getSimpleName().equals("ComposedBlockType")) {
             ComposedBlockType composedBlock = (ComposedBlockType) blockType;
             for (BlockType innerBlockType : composedBlock.getTextBlockOrIllustrationOrGraphicalElement()) {
@@ -152,7 +154,7 @@ public class AltoXMLUpdater {
         }
     }
     
-    private void processTextLine(TextBlockType textBlock, TextBlockType.TextLine textLine, int horizontalResolution, int verticalResolution, String measurementUnit) {
+    private void processTextLine(ListIterator<TextLine> textLineIter, TextBlockType.TextLine textLine, int horizontalResolution, int verticalResolution, String measurementUnit) {
 
 //        System.out.println("TEXTLINE: " + textLine.getID());
         ListIterator<Object> lineIter = textLine.getStringAndSP().listIterator();
@@ -168,7 +170,7 @@ public class AltoXMLUpdater {
             this.processHyp(lineIter, textLine.getHYP(), textLine.getID(), horizontalResolution, verticalResolution, measurementUnit);
         }
         if( textLine.getStringAndSP().isEmpty()) {
-            textBlock.getTextLine().remove(textLine);            
+            textLineIter.remove();
         }
     }
 
