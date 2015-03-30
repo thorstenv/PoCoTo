@@ -40,6 +40,11 @@
                 <attr name="iconBase" stringvalue="jav/gui/wizard/ImportDocument/newProject.png"/>
                 <attr name="position" intvalue="0"/>
              </file>
+            <file name="jav-gui-wizard-export-updateAlto-UpdateAltoXmlWizardAction.instance">
+                <attr name="displayName" bundlevalue="jav.gui.wizard.export.updateAlto.Bundle#CTL_UpdateAlto"/>
+                <attr name="noIconInMenu" stringvalue="true"/>
+                <attr name="position" intvalue="0"/>
+            </file>             
         </folder>
         <folder name="Profiler">
             <file name="jav-gui-actions-EnterID.instance_hidden"/>
@@ -125,7 +130,10 @@
                     <attr name="originalFile" stringvalue="Actions/File/jav-gui-actions-ExportAsPageSeparatedPlainText.instance"/>
                     <attr name="position" intvalue="1300"/>
                 </file>
-
+                <file name="jav-gui-wizard-export-updateAlto-UpdateAltoXmlWizardAction.shadow">
+                    <attr name="originalFile" stringvalue="Actions/File/jav-gui-wizard-export-updateAlto-UpdateAltoXmlWizardAction.instance"/>
+                    <attr name="position" intvalue="1400"/>
+                </file>
             </folder>
         </folder>
         

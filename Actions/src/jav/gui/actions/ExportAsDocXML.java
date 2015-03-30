@@ -4,13 +4,10 @@ import jav.gui.cookies.DocumentLoadedCookie;
 import jav.gui.dialogs.CustomErrorDialog;
 import jav.gui.dialogs.UnsavedChangesDialog;
 import jav.gui.main.MainController;
-import jav.gui.main.SwingUtils;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.JFileChooser;
-import javax.swing.UIManager;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressRunnable;
 import org.netbeans.api.progress.ProgressUtils;
@@ -49,7 +46,7 @@ import org.openide.util.Utilities;
  * 
  * @author thorsten (thorsten.vobl@googlemail.com)
  */
-public class ExportAsDocXML extends ContextAction<DocumentLoadedCookie>{
+public class ExportAsDocXML extends ContextAction<DocumentLoadedCookie> {
 
     public ExportAsDocXML() {
         this(Utilities.actionsGlobalContext());

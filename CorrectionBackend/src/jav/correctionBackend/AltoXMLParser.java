@@ -82,6 +82,8 @@ public class AltoXMLParser implements Parser {
             TIFFDirectory tif = new TIFFDirectory(new FileSeekableStream(new RandomAccessFile(imgFile, "r")), 0);
             horizontalResolution = (int) tif.getFieldAsFloat(282);
             verticalResolution = (int) tif.getFieldAsFloat(283);
+            
+            System.out.println("RESOLUTION: " + horizontalResolution + " " + verticalResolution);
 
             InputStreamReader reader = new InputStreamReader(new FileInputStream(xmlFile), encoding);
             JAXBContext context = JAXBContext.newInstance(Alto1_4Document.class);

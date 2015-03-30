@@ -87,7 +87,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "StringType", propOrder = {
-    "alternative"
+    "alternative", "cc","wc","content","height","width","vpos","hpos","id"
 })
 public class StringType {
 
@@ -526,7 +526,5 @@ public class StringType {
         public void setPURPOSE(String value) {
             this.purpose = value;
         }
-
     }
-
 }

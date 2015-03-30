@@ -52,7 +52,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PageSpaceType", propOrder = {
-    "textBlockOrIllustrationOrGraphicalElement"
+    "textBlockOrIllustrationOrGraphicalElement",
+    "vpos","hpos","height","stylerefs","id"
 })
 public class PageSpaceType {
 

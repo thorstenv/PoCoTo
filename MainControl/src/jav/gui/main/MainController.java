@@ -503,7 +503,7 @@ public class MainController implements Lookup.Provider, TokenStatusEventSlot, Sa
             MainController.changeCursorWaitStatus(true);
             int undo_redo = globalDocument.getUndoRedoIndex();
             ArrayList<Integer> retval = this.globalDocument.deleteToken(index);
-            if (retval.size() > 0) {
+            if (!(retval == null || retval.isEmpty())) {
                 globalDocument.getUndoRedoManager().undoableEditHappened(new UndoableEditEvent(this, new MyUndoableEdit(MyEditType.DELETE, undo_redo)));
                 MessageCenter.getInstance().fireTokenStatusEvent(new DeleteEvent(this, index, TokenStatusType.DELETE, retval));
             }
@@ -520,7 +520,7 @@ public class MainController implements Lookup.Provider, TokenStatusEventSlot, Sa
             MainController.changeCursorWaitStatus(true);
             int undo_redo = globalDocument.getUndoRedoIndex();
             ArrayList<Integer> retval = this.globalDocument.deleteToken(begin, afterend);
-            if (retval.size() > 0) {
+            if (!(retval == null || retval.isEmpty())) {
                 globalDocument.getUndoRedoManager().undoableEditHappened(new UndoableEditEvent(this, new MyUndoableEdit(MyEditType.DELETE, undo_redo)));
                 MessageCenter.getInstance().fireTokenStatusEvent(new DeleteEvent(this, begin, TokenStatusType.DELETE, retval));
             }

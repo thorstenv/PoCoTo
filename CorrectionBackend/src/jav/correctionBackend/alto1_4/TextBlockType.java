@@ -214,7 +214,8 @@ public class TextBlockType
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "stringAndSP",
-        "hyp"
+        "hyp",
+        "cs","baseline","vpos","hpos","width","height","stylerefs","id"
     })
     public static class TextLine {
 
@@ -488,7 +489,7 @@ public class TextBlockType
          * 
          */
         @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
+        @XmlType(name = "", propOrder = {"content","vpos","hpos","width"})
         public static class HYP {
 
             @XmlAttribute(name = "WIDTH")
@@ -621,7 +622,7 @@ public class TextBlockType
          * 
          */
         @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
+        @XmlType(name = "", propOrder = {"vpos","hpos","width","id"})
         public static class SP {
 
             @XmlAttribute(name = "ID")

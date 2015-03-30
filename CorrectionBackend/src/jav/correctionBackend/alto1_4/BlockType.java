@@ -55,7 +55,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "BlockType", propOrder = {
-    "shape"
+    "actuate","show","title","arcrole","role","href","type","idnext","rotation","vpos","hpos","width","height","stylerefs","id","shape"
 })
 @XmlSeeAlso({
     TextBlockType.class,

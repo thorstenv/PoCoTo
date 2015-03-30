@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -987,6 +988,51 @@ public abstract class Document {
         }
         return retval;
     }
+    
+    public List<Token> getTokensByOrigID( String origTokenID ) {
+        List<Token> retval = null;
+        try {
+            Connection conn = jcp.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM token WHERE orig_id='" + origTokenID + "' AND indexInDocument <> -1 ORDER BY indexInDocument");
+            while (rs.next()) {
+                if( retval == null ) {
+                    retval = new ArrayList<>();
+                }
+                Token temp = new Token(rs.getString(4));
+                temp.setId(rs.getInt(1));
+                temp.setIndexInDocument(rs.getInt(2));
+                temp.setOrigID(rs.getString(3));
+                temp.setWCOR(rs.getString(5));
+                temp.setIsSuspicious(rs.getBoolean(15));
+                temp.setIsCorrected(rs.getBoolean(7));
+                temp.setIsNormal(rs.getBoolean(6));
+                temp.setNumberOfCandidates(rs.getInt(8));
+                temp.setPageIndex(rs.getInt(16));
+                temp.setSpecialSeq(SpecialSequenceType.valueOf(rs.getString(13)));
+                temp.setTopSuggestion(rs.getString(17));
+                temp.setTopCandDLev(rs.getInt(18));
+
+                if (rs.getString(14).equals("")) {
+                    temp.setTokenImageInfoBox(null);
+                } else {
+                    TokenImageInfoBox tiib = new TokenImageInfoBox();
+                    tiib.setImageFileName(this.baseImagePath + File.separator + rs.getString(14));
+                    tiib.setCoordinateBottom(rs.getInt(12));
+                    tiib.setCoordinateTop(rs.getInt(11));
+                    tiib.setCoordinateLeft(rs.getInt(9));
+                    tiib.setCoordinateRight(rs.getInt(10));
+                    temp.setTokenImageInfoBox(tiib);
+                }
+                retval.add(temp);
+            }
+            s.close();
+            conn.close();
+        } catch (SQLException ex) {
+            return null;
+        }
+        return retval;
+    }    
 
     public Token getNextToken(int tokenID) {
         Token thisT = this.getTokenByID(tokenID);
@@ -1540,6 +1586,10 @@ public abstract class Document {
 
     public void exportAsDocXML(String filename, boolean exportCandidates) {
         new OCRXMLExporter().export(this, filename, exportCandidates);
+    }
+    
+    public void updateAltoXML( String altoPath, String altoEncoding, String altoRes, String targetPath, String targetEncoding ) {
+       new AltoXMLUpdater().doIt(this, altoPath, altoEncoding, altoRes, targetPath, targetEncoding);
     }
 
     public void exportAsPageSeparatedPlaintext(String filename) {

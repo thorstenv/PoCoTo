@@ -205,6 +205,8 @@ public class SpreadIndexDocument extends Document {
         int indexFrom = from.getIndexInDocument();
         int indexTo = to.getIndexInDocument();
 
+        System.out.println("DELETE TOKEN: " + iDFrom + " " + iDTo + " " + from.getWDisplay() + " " + to.getWDisplay());
+        
         try {
             ArrayList<Integer> retval = new ArrayList<>();
             if (indexTo < indexFrom) {

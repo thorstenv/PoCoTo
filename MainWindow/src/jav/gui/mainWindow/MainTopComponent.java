@@ -113,7 +113,7 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
     private int multivertical;
     private LockableUI lockableUI;
     private MouseDrawingUI mouseDrawingUI;
-    
+
     public MainTopComponent() {
 
         MessageCenter.getInstance().addDocumentChangedEventListener(this);
@@ -336,11 +336,11 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
             if (!this.isActive) {
                 this.requestActive();
             }
-            
+
             content.add(this);
             MainController.findInstance().setLastFocusedTopComponent(this);
             MainController.findInstance().addToLookup(globalActions);
-            
+
 //            MainController.findInstance().removeFromLookup(globalActions);
             MessageCenter.getInstance().firePageChangedEvent(new PageChangedEvent(instance, currentPageIndex));
         } catch (Exception | Error ex) {
@@ -588,11 +588,12 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
                 DeleteEvent de = (DeleteEvent) e;
                 // line ends have specific markers in the layout that have to be replaced if last token of line is deleted
                 if (pv.getLayoutConstraints().containsKey(tv)) {
+                    System.out.println("LAYOUT CONSTRAINT " + tv.getTokenTextLabelText());
+                    System.out.println("DELETE: " + tv.getTokenTextLabelText() + " " + de.getAffectedTokenIds().toString());
                     TokenVisualization newtv = (TokenVisualization) this.tokenRegistry.getTokenVisualization(de.getAffectedTokenIds().get(de.getAffectedTokenIds().size() - 1));
-                    if (pv.getLayoutConstraints().containsKey(tv)) {
-                        pv.getLayoutConstraints().remove(tv);
-                        pv.getLayoutConstraints().put(newtv, "br");
-                    }
+                    System.out.println("NEWTOKEN: " + newtv.getTokenTextLabelText());
+                    pv.getLayoutConstraints().remove(tv);
+                    pv.getLayoutConstraints().put(newtv, "br");
                 }
 
                 pv.update(TokenStatusType.DELETE, de.getPOIID(), de.getAffectedTokenIds());
@@ -604,7 +605,6 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
 //            } else {
 ////                this.currentTokenIndex -= ((DeleteEvent) e).getNumberOfTokensAffected();
 //            }
-
                 this.goToNextNormalToken();
 
                 if (this.multiToken != null) {
@@ -625,7 +625,6 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
 
 //            this.currentTokenIndex -= ((InsertEvent) e).getNumberOfTokensAffected();
 //            this.goToNextNormalToken();
-
                 if (this.multiToken != null) {
                     if (this.multiToken.size() > 1) {
                         this.multiSelection = null;
@@ -765,7 +764,7 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
             }
         }
     }
-    
+
     public void goToPreviousToken() {
         /*
          * selects the prev token
@@ -810,7 +809,7 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
 
             }
         }
-    }    
+    }
 
     public void goToPreviousNormalToken() {
         /*
@@ -877,8 +876,8 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
                 toTest = MainController.findInstance().getDocument().getTokenByID(this.currentTokenID);
             }
 
-            while( toTest.getPageIndex() == this.currentPageIndex) {
-                            
+            while (toTest.getPageIndex() == this.currentPageIndex) {
+
                 TokenVisualization testtv = (TokenVisualization) tokenRegistry.getTokenVisualization(toTest.getID());
                 if (!testtv.isNewline() & !testtv.isSpace()) {
 
@@ -944,7 +943,7 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
                 this.vertical = tokenRegistry.getTokenVisualization(MainController.findInstance().getPage(this.currentPageIndex).getEndIndex() - 1).getY() + 1000;
             }
 
-            while( toTest.getPageIndex() == this.currentPageIndex ) {
+            while (toTest.getPageIndex() == this.currentPageIndex) {
 
                 TokenVisualization testtv = (TokenVisualization) tokenRegistry.getTokenVisualization(toTest.getID());
                 if (!testtv.isNewline() & !testtv.isSpace()) {
@@ -1055,7 +1054,6 @@ public final class MainTopComponent extends AbstractEditorViewTopComponent imple
             } else {
                 indextotest = MainController.findInstance().getPage(this.currentPageIndex).getStartIndex();
             }
-
 
             int count = 1;
 

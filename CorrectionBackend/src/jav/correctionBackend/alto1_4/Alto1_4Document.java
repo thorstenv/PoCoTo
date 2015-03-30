@@ -677,7 +677,8 @@ public class Alto1_4Document {
             "leftMargin",
             "rightMargin",
             "bottomMargin",
-            "printSpace"
+            "printSpace",
+            "pc","accuracy","processing","position","qualitydetail","quality","printedimgnr","physicalimgnr","width","height","stylerefs","pageclass","id"
         })
         public static class Page {
 
@@ -1313,7 +1314,7 @@ public class Alto1_4Document {
          * 
          */
         @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
+        @XmlType(name = "", propOrder = {"firstline","linespace","right","left","align","id"})
         public static class ParagraphStyle {
 
             @XmlAttribute(name = "ID", required = true)
@@ -1498,7 +1499,7 @@ public class Alto1_4Document {
          * 
          */
         @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
+        @XmlType(name = "", propOrder={"fontstyle","fontcolor","fontsize","fontwidth","fonttype","fontfamily","id"})
         public static class TextStyle {
 
             @XmlAttribute(name = "ID")
